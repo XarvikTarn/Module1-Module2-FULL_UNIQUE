@@ -3,7 +3,7 @@ sed -i 's|http://ftp.altlinux.org/pub/distributions/ALTLinux|http://10.45.33.250
 rm -rf /etc/net/ifaces/enp7s1
 mkdir /etc/net/ifaces/enp7s{1,2}
 mkdir /etc/net/ifaces/gre1
-mkdir /etc/net/ifaces/vlan{[ИМЯ_VLAN_ИНТЕРФЕЙСА#1],[ИМЯ_VLAN_ИНТЕРФЕЙСА#2],[ИМЯ_VLAN_ИНТЕРФЕЙСА#3]}
+mkdir /etc/net/ifaces/{[ИМЯ_VLAN_ИНТЕРФЕЙСА#1],[ИМЯ_VLAN_ИНТЕРФЕЙСА#2],[ИМЯ_VLAN_ИНТЕРФЕЙСА#3]}
 echo "TYPE=eth" > /etc/net/ifaces/enp7s1/options
 echo "172.16.1.2/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/enp7s1/ipv4address
 echo "default via 172.16.1.1" > /etc/net/ifaces/enp7s1/ipv4route
