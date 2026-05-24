@@ -5,9 +5,13 @@ mkdir /etc/net/ifaces/enp7s{1,2,3}
 echo "TYPE=eth" > /etc/net/ifaces/enp7s1/options
 echo "BOOTPROTO=dhcp" >> /etc/net/ifaces/enp7s1/options
 echo "TYPE=eth" > /etc/net/ifaces/enp7s2/options
-echo "172.16.1.1/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/enp7s2/ipv4address
+
+echo "172.16.1.1/[ВСТАВЬ_МАСКУ_СЮДА - в сторону HQ-RTR]" > /etc/netifaces/enp7s2/ipv4address
+
 echo "TYPE=eth" > /etc/net/ifaces/enp7s3/options
-echo "172.16.2.1/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/enp7s3/ipv4address
+
+echo "172.16.2.1/[ВСТАВЬ_МАСКУ_СЮДА - в сторону BR-RTR]" > /etc/net/ifaces/enp7s3/ipv4address
+
 sed -i 's/net.ipv4.ip_forward = 0/net.ipv4.ip_forward = 1/' /etc/net/sysctl.conf
 sysctl -w net.ipv4.ip_forward=1
 sysctl net.ipv4.ip_forward
