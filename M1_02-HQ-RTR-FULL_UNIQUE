@@ -116,9 +116,9 @@ EOF
 resolvconf -u
 systemctl enable --now dnsmasq && systemctl status --no-pager dnsmasq
 
-useradd -m -s /bin/bash [ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR]
-echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR]:[ПАРОЛЬ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR]" | chpasswd
-echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR] ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR]
+useradd -m -s /bin/bash [ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR/BR-RTR]
+echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR/BR-RTR]:[ПАРОЛЬ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR/BR-RTR]" | chpasswd
+echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR/BR-RTR] ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - HQ-RTR/BR-RTR]
 
 echo "nameserver 172.16.100.2" > /etc/net/ifaces/enp7s1/resolv.conf
 systemctl restart network sshd
