@@ -76,18 +76,18 @@ systemctl restart bind
 rndc reload
 host 172.16.100.2 127.0.0.1
 
-useradd -u 2026 -m -s /bin/bash [ИМЯ_ПОЛЬЗОВАТЕЛЯ]
+useradd -u [ID_ПОЛЬЗОВАТЕЛЯ] -m -s /bin/bash [ИМЯ_ПОЛЬЗОВАТЕЛЯ]
 echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ]:[ПАРОЛЬ_ПОЛЬЗОВАТЕЛЯ]" | chpasswd
 echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ] ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/[ИМЯ_ПОЛЬЗОВАТЕЛЯ]
 echo "Authorized access only" > /etc/issue.net
 cat <<EOF >> /etc/openssh/sshd_config
 
 # Hardening Rules
-Port 2026
+Port [НОМЕР_ПОРТА_SSH]
 PermitRootLogin no
-MaxAuthTries 2
+MaxAuthTries [КОЛИЧЕСТВО_ПОПЫТОК_SSH]
 Banner /etc/issue.net
-AllowUsers sshuser
+AllowUsers [ИМЯ_ПОЛЬЗОВАТЕЛЯ]
 EOF
 systemctl restart network 
 systemctl restart sshd
