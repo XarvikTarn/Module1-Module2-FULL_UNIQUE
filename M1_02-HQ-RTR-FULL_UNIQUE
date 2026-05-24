@@ -18,19 +18,19 @@ TUNTTL=64
 TUNOPTIONS='ttl 64'
 EOF
 echo "10.10.10.1/30" > /etc/net/ifaces/gre1/ipv4address
-cat <<EOF > /etc/net/ifaces/vlan100/options
+cat <<EOF > /etc/net/ifaces/[ИМЯ_VLAN_ИНТЕРФЕЙСА#1]/options
 TYPE=vlan
 HOST=enp7s2
 VID=[ID_VLAN#1]
 EOF
 echo "172.16.100.1/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/[ИМЯ_VLAN_ИНТЕРФЕЙСА#1]/ipv4address
-cat <<EOF > /etc/net/ifaces/vlan200/options
+cat <<EOF > /etc/net/ifaces/[ИМЯ_VLAN_ИНТЕРФЕЙСА#2]/options
 TYPE=vlan
 HOST=enp7s2
 VID=[ID_VLAN#2]
 EOF
 echo "172.16.200.1/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/[ИМЯ_VLAN_ИНТЕРФЕЙСА#2]/ipv4address
-cat <<EOF > /etc/net/ifaces/vlan999/options
+cat <<EOF > /etc/net/ifaces/[ИМЯ_VLAN_ИНТЕРФЕЙСА#3]/options
 TYPE=vlan
 HOST=enp7s2
 VID=[ID_VLAN#3]
