@@ -6,5 +6,7 @@ sed -i 's/net.ipv4.ip_forward = 1/net.ipv4.ip_forward = 0/' /etc/net/sysctl.conf
 sysctl -w net.ipv4.ip_forward=0
 sysctl net.ipv4.ip_forward
 apt-get remove -y --purge tzdata nftables frr sudo 
+
 userdel -r [ИМЯ_ПОЛЬЗОВАТЕЛЯ]
+
 systemctl restart reboot
