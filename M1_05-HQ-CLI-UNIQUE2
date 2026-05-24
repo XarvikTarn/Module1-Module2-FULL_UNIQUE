@@ -9,5 +9,5 @@ timedatectl set-timezone Asia/Vladivostok && date
 nmcli con mod DHCP-CLI ipv4.dns 172.16.100.2
 nmcli con up DHCP-CLI
 systemctl restart network
-ssh [ИМЯ_ПОЛЬЗОВАТЕЛЯ]@hq-srv.[ИМЯ_ДОМЕНА] -p 2026 "date && ping ya.ru -c 2"
+ssh [ИМЯ_ПОЛЬЗОВАТЕЛЯ]@hq-srv.[ИМЯ_ДОМЕНА] -p [НОМЕР_ПОРТА_SSH] "date && ping ya.ru -c 2"
 history -a
