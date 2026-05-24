@@ -1,14 +1,19 @@
 hostnamectl set-hostname BR-RTR.[ИМЯ_ДОМЕНА] && exec bash
+
 sed -i 's|http://ftp.altlinux.org/pub/distributions/ALTLinux|http://10.45.33.250:3142/altlinux|g' /etc/apt/sources.list.d/alt.list
 rm -rf /etc/net/ifaces/enp7s1
 mkdir /etc/net/ifaces/enp7s{1,2}
 mkdir /etc/net/ifaces/gre1
 echo "TYPE=eth" > /etc/net/ifaces/enp7s1/options
-echo "172.16.2.2/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/enp7s1/ipv4address
+
+echo "172.16.2.2/[ВСТАВЬ_МАСКУ_СЮДА - в сторону BR-RTR]" > /etc/net/ifaces/enp7s1/ipv4address
+
 echo "default via 172.16.2.1" > /etc/net/ifaces/enp7s1/ipv4route
 echo "nameserver 8.8.8.8" > /etc/net/ifaces/enp7s1/resolv.conf
 echo "TYPE=eth" > /etc/net/ifaces/enp7s2/options
-echo "172.16.10.1/[ВСТАВЬ_МАСКУ_СЮДА]" > /etc/net/ifaces/enp7s2/ipv4address
+
+echo "172.16.10.1/[ВСТАВЬ_МАСКУ_СЮДА - LAN BR-SRV]" > /etc/net/ifaces/enp7s2/ipv4address
+
 cat <<EOF > /etc/net/ifaces/gre1/options
 TYPE=iptun
 TUNTYPE=gre
@@ -56,9 +61,11 @@ EOF
 systemctl enable --now frr && systemctl status --no-pager frr
 systemctl restart network
 ping 10.10.10.1 -c 5
-useradd -m -s /bin/bash [ИМЯ_ПОЛЬЗОВАТЕЛЯ]
-echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ]:[ПАРОЛЬ_ПОЛЬЗОВАТЕЛЯ]" | chpasswd
-echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ] ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/[ИМЯ_ПОЛЬЗОВАТЕЛЯ]
+
+useradd -m -s /bin/bash [ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - BR-RTR]
+echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - BR-RTR]:[ПАРОЛЬ_ПОЛЬЗОВАТЕЛЯ_SSH - BR-RTR]" | chpasswd
+echo "[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - BR-RTR] ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/[ИМЯ_ПОЛЬЗОВАТЕЛЯ_SSH - BR-RTR]
+
 echo "nameserver 172.16.100.2" > /etc/net/ifaces/enp7s1/resolv.conf
 systemctl restart network sshd
 vtysh -c "show ip ospf neighbor"
