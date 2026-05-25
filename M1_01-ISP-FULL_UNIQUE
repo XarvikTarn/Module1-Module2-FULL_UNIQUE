@@ -7,7 +7,7 @@ echo "TYPE=eth" > /etc/net/ifaces/enp7s1/options
 echo "BOOTPROTO=dhcp" >> /etc/net/ifaces/enp7s1/options
 echo "TYPE=eth" > /etc/net/ifaces/enp7s2/options
 
-echo "172.16.1.1/[ВСТАВЬ_МАСКУ_СЮДА - в сторону HQ-RTR]" > /etc/netifaces/enp7s2/ipv4address
+echo "172.16.1.1/[ВСТАВЬ_МАСКУ_СЮДА - в сторону HQ-RTR]" > /etc/net/ifaces/enp7s2/ipv4address
 
 echo "TYPE=eth" > /etc/net/ifaces/enp7s3/options
 
